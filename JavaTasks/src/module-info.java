@@ -1,0 +1,9 @@
+/**
+ * 
+ */
+/**
+ * @author smirnovao
+ *
+ */
+module JavaTasks {
+}
