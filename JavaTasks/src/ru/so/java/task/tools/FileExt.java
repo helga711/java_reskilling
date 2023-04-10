@@ -18,6 +18,17 @@ public class FileExt {
 		}	
 	}
 	
+	public static void write(File file, List<String> lines) {
+		try (FileWriter fw = new FileWriter(file)) {
+			for (var line : lines) {
+				fw.append(line + "\r\n");
+			}			
+		}
+		catch (IOException exc) {
+			System.out.println("I/O Error: " + exc);
+		}	
+	}
+	
 	public static void writeln(File file, String str) {
 		write(file, str + "\r\n");
 	}

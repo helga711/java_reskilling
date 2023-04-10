@@ -6,8 +6,20 @@ import java.util.List;
 
 public class Question {
 
-	String question;
-	List<String> answers;
+	private String question;
+	private List<String> answers;
+	
+	public String getQuestion() {
+		return question;
+	}
+	
+	public int getAnswersCount() {
+		return answers.size();
+	}
+	
+	public String getAnswers(int index) {
+		return answers.get(index);
+	}
 	
 	public Question(String question) {		
 		String[] values = question.split("[|]");

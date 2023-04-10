@@ -1,32 +1,31 @@
 package ru.so.java.task.questionnaire.generator;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import ru.so.java.task.tools.Answers;
 import ru.so.java.task.tools.FileExt;
+import ru.so.java.task.tools.IOExt;
 
 public class CSVGenerator {
 	public static void main(String[] args) throws IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		IOExt io = new IOExt();
 		File file = new File("Questionnaire_" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmm")) + ".csv");
 
-		System.out.println("Введите название теста.");	
-		FileExt.writeln(file, br.readLine());
+		io.println("Введите название теста.");	
+		FileExt.writeln(file, io.readln());
 		String answer = null;
 		do {
 			StringBuilder builder = new StringBuilder();
-			System.out.println("Введите вопрос.");		
-			builder.append(br.readLine() + '|');
-			System.out.println("Введите ответ.");
-			System.out.println("Напечатайте 'Next', чтобы перейти к следующему вопросу.");
-			System.out.println("Напечатайте 'Стоп', чтобы закончить.");
+			io.println("Введите вопрос.");		
+			builder.append(io.readln() + '|');
+			io.println("Введите ответ.");
+			io.println("Напечатайте 'Next', чтобы перейти к следующему вопросу.");
+			io.println("Напечатайте 'Стоп', чтобы закончить.");
 			do {				
-				answer = br.readLine();
+				answer = io.readln();
 				if (!Answers.isNext(answer) && !Answers.isStopped(answer)) {
 					builder.append(answer + '|');
 				}
@@ -35,8 +34,8 @@ public class CSVGenerator {
 			FileExt.writeln(file, builder.toString().substring(0, builder.toString().length() - 1));
 		}
 		while(!Answers.isStopped(answer));
-		System.out.println("Ссылка на тест: ");
-		FileExt.writeln(file, br.readLine());
-		System.out.println(file.getAbsolutePath());
+		io.println("Ссылка на тест: ");
+		FileExt.writeln(file, io.readln());
+		io.println(file.getAbsolutePath());
 	}	
 }
