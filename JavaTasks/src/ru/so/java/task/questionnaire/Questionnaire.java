@@ -6,12 +6,24 @@ import java.util.stream.Collectors;
 
 public class Questionnaire {
 
-	String name;
-	List<Question> questions;
-	String link;
+	private String name;
+	private List<Question> questions;
+	private String link;
+	
+	public String getName() {
+		return name;
+	}
+	
+	public List<Question> getQuestions() {
+		return questions;
+	}
+	
+	public String getLink() {
+		return link;
+	}
 	
 	public Questionnaire(List<String> questionnaire) throws Exception {		
-		if (questionnaire.size() < 3) {
+		if (questionnaire == null || questionnaire.size() < 3) {
 			throw new Exception("Неверный формат опросника. Ожидаемый формат: "
 					+ "Название\r\nВопрос\r\nСсылка на ответы");
 		}
